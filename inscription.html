@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription — Motor Lux Event</title>
+  <meta name="description" content="Inscrivez votre véhicule à nos événements." />
+  <link rel="icon" href="assets/logo/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo/logo.jpg" alt="Racing Club Logo" />
+    </a>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
+    </ul>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header style="
+    padding: 10rem 2rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.8), var(--color-dark)),
+                url('assets/images/hero/hero.jpg') center/cover;
+    text-align: center;
+  ">
+    <span style="font-family:var(--font-condensed);font-size:var(--fs-sm);letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:0.75rem;">
+      Rejoignez-nous
+    </span>
+    <h1>Inscrire mon <span style="color:var(--color-accent)">véhicule</span></h1>
+    <p style="color:var(--color-light);margin-top:1rem;font-size:1.1rem;max-width:580px;margin-left:auto;margin-right:auto;">
+      Exposez votre véhicule lors de notre prochain rassemblement. Remplissez le formulaire et nous vous contacterons pour confirmer.
+    </p>
+  </header>
+
+  <!-- SECTION INSCRIPTION -->
+  <section class="inscription">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto;">
+
+        <h2 class="section-title reveal">Votre <span>inscription</span></h2>
+        <div class="divider"></div>
+
+        <form class="inscription__form" id="vehicule-form">
+
+          <h3 style="font-family:var(--font-condensed);font-size:1.1rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent);margin-bottom:1rem;">
+            Vos coordonnées
+          </h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-prenom">Prénom *</label>
+              <input type="text" id="v-prenom" name="prenom" placeholder="Votre prénom" required />
+            </div>
+            <div class="form-group">
+              <label for="v-nom">Nom *</label>
+              <input type="text" id="v-nom" name="nom" placeholder="Votre nom" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-email">E-mail *</label>
+              <input type="email" id="v-email" name="email" placeholder="votre@email.fr" required />
+            </div>
+            <div class="form-group">
+              <label for="v-tel">Téléphone</label>
+              <input type="tel" id="v-tel" name="telephone" placeholder="06 xx xx xx xx" />
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-condensed);font-size:1.1rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent);margin:1.5rem 0 1rem;">
+            Votre véhicule
+          </h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-marque">Marque *</label>
+              <input type="text" id="v-marque" name="marque" placeholder="Ferrari, Porsche…" required />
+            </div>
+            <div class="form-group">
+              <label for="v-modele">Modèle *</label>
+              <input type="text" id="v-modele" name="modele" placeholder="308 GTB, 911 RSR…" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-annee">Année</label>
+              <input type="number" id="v-annee" name="annee" placeholder="1972" min="1900" max="2026" />
+            </div>
+            <div class="form-group">
+              <label for="v-categorie">Catégorie</label>
+              <select id="v-categorie" name="categorie">
+                <option value="">-- Choisir --</option>
+                <option value="course">Voiture de course</option>
+                <option value="collection">Voiture de collection</option>
+                <option value="gt">GT / Sport</option>
+                <option value="rallye">Rallye</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="v-evenement">Événement</label>
+            <select id="v-evenement" name="evenement">
+              <option value="">-- Choisir un événement --</option>
+              <option value="st-raph-2026">Rassemblement St-Raphaël — 12 Avril 2026</option>
+              <option value="dont know">Je ne sais pas encore</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="v-commentaire">Informations complémentaires</label>
+            <textarea id="v-commentaire" name="commentaire" placeholder="Décrivez votre véhicule, sa particularité, vos questions…"></textarea>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="v-consent" name="consent" required />
+            <label for="v-consent" style="font-size:var(--fs-sm);color:var(--color-light);">
+              J'accepte que mes données soient utilisées pour traiter ma demande d'inscription. *
+            </label>
+          </div>
+
+          <div class="form__submit">
+            <button type="submit" class="btn btn--primary btn--lg">Envoyer ma demande d'inscription</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Nos partenaires</h4>
+        <ul>
+          <!-- <li><a href="contact.html">KELO'ESTATE</a></li> -->
+          <li>Kelo'Estate</a></li>
+          <li>Mairie de St-Raphaël</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Racing Club — Tous droits réservés</span>
+      <span>Fait avec passion 🏎️</span>
+    </div>
+  </footer>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBUYZ64zlbLA2Va0Gzy_MqrzO3AOS9NNdGOYsN7AakfXsGHb-B_WmU--Vz5OJlWMx2/exec';
+
+    document.getElementById('vehicule-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Envoi en cours…';
+      btn.disabled = true;
+
+      const data = {
+        type:        'vehicule',
+        prenom:      document.getElementById('v-prenom').value,
+        nom:         document.getElementById('v-nom').value,
+        email:       document.getElementById('v-email').value,
+        telephone:   document.getElementById('v-tel').value,
+        marque:      document.getElementById('v-marque').value,
+        modele:      document.getElementById('v-modele').value,
+        annee:       document.getElementById('v-annee').value,
+        categorie:   document.getElementById('v-categorie').value,
+        evenement:   document.getElementById('v-evenement').value,
+        commentaire: document.getElementById('v-commentaire').value,
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        btn.textContent = '✓ Demande envoyée !';
+        btn.style.background = '#2a6e3f';
+        e.target.reset();
+      } catch(err) {
+        btn.textContent = 'Erreur — réessayez';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+
+</body>
+</html>

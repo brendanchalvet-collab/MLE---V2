@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Événements Passés — Racing Club</title>
+  <meta name="description" content="Retrouvez les photos et compte-rendus de nos rassemblements automobiles passés." />
+  <link rel="icon" href="assets/logo/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo/logo.jpg" alt="Racing Club Logo" />
+    </a>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
+    </ul>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+<!-- PAGE HERO -->
+<header style="
+  padding: 10rem 2rem 4rem;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--color-dark)),
+              url('assets/images/events/2025-03-st-raph/2025-04-07_08-00-00_UTC_11.jpg') center/cover no-repeat;
+  text-align: center;
+">
+  <span style="font-family:var(--font-condensed);font-size:var(--fs-sm);letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:0.75rem;">
+    Archives
+  </span>
+  <h1>Événements <span style="color:var(--color-accent)">Passés</span></h1>
+  <p style="color:var(--color-light);margin-top:1rem;font-size:1.1rem;max-width:550px;margin-left:auto;margin-right:auto;">
+    Revivez nos rassemblements en images. Cliquez sur un événement pour accéder à sa galerie photo.
+  </p>
+</header>
+
+<!-- LISTE DES ÉVÉNEMENTS -->
+<section style="background:var(--color-dark);padding:var(--space-lg) var(--space-md);">
+  <div class="container">
+
+    <div class="events-grid">
+
+      <article class="event-card reveal reveal--d1">
+        <div class="event-card__thumb">
+          <img
+            src="assets/images/events/2025-03-st-raph/2025-04-01_22-17-53_UTC.jpg"
+            alt="Rassemblement St-Raphaël Mars 2025"
+            loading="lazy"
+          />
+        </div>
+        <div class="event-card__body">
+          <p class="event-card__date">Mars 2025</p>
+          <h3 class="event-card__title">Rassemblement St-Raphaël 2025</h3>
+          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+          <a href="pages/event-detail.html?id=1" class="event-card__link">Voir la galerie →</a>
+        </div>
+      </article>
+
+      <article class="event-card reveal reveal--d2">
+        <div class="event-card__thumb">
+          <img
+            src="assets/images/events/2024-05-st-raph/2024-05-21_12-43-47_UTC.jpg"
+            alt="Rassemblement St-Raphaël Mai 2024"
+            loading="lazy"
+          />
+        </div>
+        <div class="event-card__body">
+          <p class="event-card__date">Mai 2024</p>
+          <h3 class="event-card__title">Rassemblement St-Raphaël Mai 2024</h3>
+          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+          <a href="pages/event-detail.html?id=2" class="event-card__link">Voir la galerie →</a>
+        </div>
+      </article>
+
+      <article class="event-card reveal reveal--d3">
+        <div class="event-card__thumb">
+          <img
+            src="assets/images/events/2024-02-st-raph/2024-02-27_11-31-16_UTC.jpg"
+            alt="Rassemblement St-Raphaël Février 2024"
+            loading="lazy"
+          />
+        </div>
+        <div class="event-card__body">
+          <p class="event-card__date">Février 2024</p>
+          <h3 class="event-card__title">Rassemblement St-Raphaël Février 2024</h3>
+          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+          <a href="pages/event-detail.html?id=3" class="event-card__link">Voir la galerie →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA CALENDRIER -->
+<section style="background:var(--color-dark);padding:3rem 0 5rem;text-align:center;">
+  <div class="container">
+    <p style="color:var(--color-mid);font-family:var(--font-condensed);letter-spacing:0.1em;text-transform:uppercase;font-size:var(--fs-sm);margin-bottom:1rem;">
+      Envie de participer ?
+    </p>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">
+      Voir les prochains <span style="color:var(--color-accent)">événements</span>
+    </h2>
+    <a href="calendrier.html" class="btn btn--primary btn--lg">Consulter le calendrier</a>
+  </div>
+</section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightbox-close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev">‹</button>
+    <img src="" alt="" id="lightbox-img" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next">›</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Nos partenaires</h4>
+        <ul>
+          <!-- <li><a href="contact.html">KELO'ESTATE</a></li> -->
+          <li>Kelo'Estate</a></li>
+          <li>Mairie de St-Raphaël</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Racing Club — Tous droits réservés</span>
+      <span>Fait avec passion 🏎️</span>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

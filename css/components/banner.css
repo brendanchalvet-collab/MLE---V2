@@ -1,0 +1,25 @@
+/* === BANNER === */
+.banner {
+  position: relative;
+  padding: var(--space-lg) var(--space-md);
+  background: url('https://placehold.co/1920x600/0a0a0a/c8a84b?text=+') center/cover no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.75);
+}
+
+.banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.banner h2 { margin-bottom: 1rem; }
+.banner p  { color: var(--color-light); margin-bottom: var(--space-md); }

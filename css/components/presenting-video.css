@@ -1,0 +1,33 @@
+/* ============================================================
+   PRESENTING VIDEO — Vidéo de fond dans le hero
+   ============================================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* La vidéo couvre tout le hero */
+.hero__video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* L'overlay existant et le contenu passent au-dessus */
+.hero__overlay,
+.hero__content,
+.hero__scroll {
+  position: relative;
+  z-index: 1;
+}
+
+/* On masque le fond statique du hero si tu en avais un */
+.hero__bg {
+  display: none;
+}

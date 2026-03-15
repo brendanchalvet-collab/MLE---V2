@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendrier 2026 — Racing Club</title>
+  <meta name="description" content="Retrouvez toutes les dates de nos prochains rassemblements automobiles." />
+  <link rel="icon" href="assets/logo/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo/logo.jpg" alt="Racing Club Logo" />
+    </a>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
+    </ul>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+<!-- PAGE HERO -->
+<header style="
+  padding: 10rem 2rem 4rem;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--color-dark)),
+              url('assets/images/events/2025-03-st-raph/2025-04-18_16-33-53_UTC_10.jpg') center/cover no-repeat;
+  text-align: center;
+">
+  <span style="font-family:var(--font-condensed);font-size:var(--fs-sm);letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:0.75rem;">
+    Agenda
+  </span>
+  <h1>Calendrier <span style="color:var(--color-accent)">2026</span></h1>
+  <p style="color:var(--color-light);margin-top:1rem;font-size:1.1rem;max-width:550px;margin-left:auto;margin-right:auto;">
+    Toutes les dates à venir. Inscrivez-vous à notre newsletter pour ne rien manquer.
+  </p>
+</header>
+
+<!-- COUNTDOWN PROCHAIN EVENT -->
+<div class="countdown">
+  <p class="countdown__event-name">St-Raphaël - 12 Avril 2026</p>
+  <p class="countdown__label">Prochain rassemblement dans</p>
+  <div class="countdown__timer" id="countdown-timer" data-date="2026-04-12T09:00:00">
+    <div class="countdown__unit">
+      <span class="countdown__number" id="cd-days">00</span>
+      <span class="countdown__label-unit">Jours</span>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__unit">
+      <span class="countdown__number" id="cd-hours">00</span>
+      <span class="countdown__label-unit">Heures</span>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__unit">
+      <span class="countdown__number" id="cd-minutes">00</span>
+      <span class="countdown__label-unit">Minutes</span>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__unit">
+      <span class="countdown__number" id="cd-seconds">00</span>
+      <span class="countdown__label-unit">Secondes</span>
+    </div>
+  </div>
+  <a href="inscription.html" class="btn btn--ghost" style="margin-top:2rem;">S'inscrire à l'événement</a>
+</div>
+
+<!-- LISTE DES ÉVÉNEMENTS À VENIR -->
+<section class="calendar-section" style="padding: var(--space-lg) var(--space-md);">
+  <div class="container">
+    <h2 class="section-title reveal">Événements <span>à venir</span></h2>
+    <div class="divider"></div>
+
+    <div class="calendar__list">
+
+      <div class="calendar__item reveal">
+        <div class="calendar__date">
+          <div class="day">12</div>
+          <div class="month">Avr</div>
+        </div>
+        <div class="calendar__info">
+          <h3>Rassemblement St-Raphaël 2026</h3>
+          <p>📍 Saint-Raphaël, Var &nbsp;|&nbsp; 09h00 – 18h00</p>
+          <span class="tag">Course & Collection</span>
+        </div>
+        <a href="inscription.html" class="btn btn--primary btn--sm">S'inscrire</a>
+      </div>
+
+      <div class="calendar__item reveal">
+        <div class="calendar__date">
+          <div class="day">07</div>
+          <div class="month">Juin</div>
+        </div>
+        <div class="calendar__info">
+          <h3>Concours d'Élégance — Cannes</h3>
+          <p>📍 Boulevard de la Croisette, Cannes &nbsp;|&nbsp; 10h00 – 18h00</p>
+          <span class="tag">Collection</span>
+        </div>
+        <a href="inscription.html" class="btn btn--primary btn--sm">S'inscrire</a>
+      </div>
+
+      <div class="calendar__item reveal">
+        <div class="calendar__date">
+          <div class="day">19</div>
+          <div class="month">Juil</div>
+        </div>
+        <div class="calendar__info">
+          <h3>Rallye des Corniches</h3>
+          <p>📍 Nice → Menton, Alpes-Maritimes &nbsp;|&nbsp; 08h00 – 19h00</p>
+          <span class="tag">Rallye</span>
+        </div>
+        <a href="inscription.html" class="btn btn--primary btn--sm">S'inscrire</a>
+      </div>
+
+      <div class="calendar__item reveal">
+        <div class="calendar__date">
+          <div class="day">13</div>
+          <div class="month">Sep</div>
+        </div>
+        <div class="calendar__info">
+          <h3>Exposition Véhicules d'Exception — Saint-Tropez</h3>
+          <p>📍 Place des Lices, Saint-Tropez &nbsp;|&nbsp; 09h00 – 17h00</p>
+          <span class="tag">Collection</span>
+        </div>
+        <a href="inscription.html" class="btn btn--primary btn--sm">S'inscrire</a>
+      </div>
+
+      <div class="calendar__item reveal">
+        <div class="calendar__date">
+          <div class="day">18</div>
+          <div class="month">Oct</div>
+        </div>
+        <div class="calendar__info">
+          <h3>Grand Rassemblement Automne — Circuit Paul Ricard</h3>
+          <p>📍 Circuit Paul Ricard, Le Castellet &nbsp;|&nbsp; 09h00 – 18h00</p>
+          <span class="tag">Course & Collection</span>
+        </div>
+        <a href="inscription.html" class="btn btn--primary btn--sm">S'inscrire</a>
+      </div>
+
+    </div>
+
+    <!-- NOTE INFORMATION -->
+    <div style="
+      margin-top: var(--space-md);
+      padding: 1.5rem;
+      background: var(--color-dark-alt);
+      border: 1px solid var(--color-grey);
+      border-left: 4px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    ">
+      <span style="font-size:1.5rem;">📅</span>
+      <div>
+        <strong style="font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:0.08em;color:var(--color-accent);">
+          Restez informé
+        </strong>
+        <p style="color:var(--color-light);margin-top:0.3rem;font-size:var(--fs-sm);">
+          Les dates peuvent évoluer. Inscrivez-vous à notre newsletter pour recevoir toutes les mises à jour en avant-première.
+        </p>
+        <a href="inscription.html" class="btn btn--ghost btn--sm" style="margin-top:0.75rem;">
+          S'inscrire à la newsletter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Nos partenaires</h4>
+        <ul>
+          <!-- <li><a href="contact.html">KELO'ESTATE</a></li> -->
+          <li>Kelo'Estate</a></li>
+          <li>Mairie de St-Raphaël</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Racing Club — Tous droits réservés</span>
+      <span>Fait avec passion 🏎️</span>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

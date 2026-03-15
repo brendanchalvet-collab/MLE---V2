@@ -1,0 +1,46 @@
+/* === INTRO / PRÉSENTATION === */
+.intro {
+  background: var(--color-dark);
+  padding: var(--space-xl) var(--space-md);
+}
+
+.intro__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro__text p {
+  color: var(--color-light);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.intro__image {
+  position: relative;
+}
+
+.intro__image img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.intro__image::before {
+  content: '';
+  position: absolute;
+  inset: -12px -12px 12px 12px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .intro__inner { grid-template-columns: 1fr; }
+  .intro__image::before { display: none; }
+}
