@@ -18,11 +18,9 @@
     </a>
     <ul class="navbar__links" id="nav-links">
       <li><a href="../index.html">Accueil</a></li>
-      <li><a href="../evenements.html" class="active">Événements</a></li>
+      <li><a href="../evenements.html">Événements</a></li>
       <li><a href="../calendrier.html">Calendrier</a></li>
-      <li><a href="../inscription.html">Inscription</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-      <li><a href="../inscription.html" class="navbar__cta btn btn--primary btn--sm">Newsletter</a></li>
+      <li><a href="../contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
     </ul>
     <button class="navbar__burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -66,7 +64,7 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <img src="../assets/logo/logo.jpg" alt="Racing Club" />
-        <p>Rassemblement de voitures de courses et de collection. Passion, élégance, partage.</p>
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
       </div>
       <div class="footer__col">
         <h4>Navigation</h4>
@@ -74,15 +72,19 @@
           <li><a href="../index.html">Accueil</a></li>
           <li><a href="../evenements.html">Événements</a></li>
           <li><a href="../calendrier.html">Calendrier</a></li>
-          <li><a href="../inscription.html">Inscription</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Nos partenaires</h4>
+        <ul>
+          <li>Kelo'Estate</li>
+          <li>Mairie de St-Raphaël</li>
         </ul>
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:contact@racingclub.fr">contact@racingclub.fr</a></li>
-          <li><a href="../contact.html">Formulaire</a></li>
+          <li><a href="../contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -98,207 +100,51 @@
     // ── Configuration des événements ──────────────────────────────────────
     const EVENTS = {
       "1": {
-        title: "Rassemblement St-Raphaël 2025",
+        title:    "Rassemblement St-Raphaël 2025",
         location: "Saint-Raphaël, Var",
-        date: "Mars 2025",
-        folder: "../assets/images/events/2025-03-st-raph",
-        // Préfixes de noms de fichiers présents dans ce dossier
-        files: [
-          "2025-04-01_22-17-53_UTC"
-        ],
-        // Suffixes possibles à tester pour les variantes _1, _2…
+        date:     "Mars 2025",
+        folder:   "../assets/images/events/2025-03-st-raph",
       },
       "2": {
-        title: "Rassemblement St-Raphaël Mai 2024",
+        title:    "Rassemblement St-Raphaël Mai 2024",
         location: "Saint-Raphaël, Var",
-        date: "Mai 2024",
-        folder: "../assets/images/events/2024-05-st-raph",
-        files: [
-          "2024-05-21_12-43-47_UTC"
-        ],
+        date:     "Mai 2024",
+        folder:   "../assets/images/events/2024-05-st-raph",
       },
       "3": {
-        title: "Rassemblement St-Raphaël Février 2024",
+        title:    "Rassemblement St-Raphaël Février 2024",
         location: "Saint-Raphaël, Var",
-        date: "Février 2024",
-        folder: "../assets/images/events/2024-02-st-raph",
-        files: [
-          "2024-02-27_11-31-16_UTC"
-        ],
+        date:     "Février 2024",
+        folder:   "../assets/images/events/2024-02-st-raph",
       }
     };
 
-    // ── Charge les photos par test 404 ────────────────────────────────────
-    async function probeImage(src) {
-      return new Promise(resolve => {
-        const img = new Image();
-        img.onload  = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = src;
-      });
-    }
-
-    async function loadPhotos(folder) {
-      const photos = [];
-
-      // Dates/préfixes connus dans chaque dossier — on les probe avec variantes
-      // Format attendu : YYYY-MM-DD_HH-MM-SS_UTC.jpg ou _UTC_1.jpg … _UTC_8.jpg
-      // On va scanner toutes les images du dossier en cherchant des patterns connus
-
-      // Stratégie : on fait une requête fetch sur le dossier pour récupérer le listing
-      // Si le serveur retourne un 403/404, on tombe sur le fallback par probe
-
-      let listing = null;
-      try {
-        const res = await fetch(folder + '/');
-        if (res.ok) {
-          const html = await res.text();
-          // Extrait les noms de fichiers .jpg depuis le listing Apache/Nginx
-          const matches = [...html.matchAll(/href="([^"]+\.jpg)"/gi)];
-          listing = matches.map(m => m[1].replace(/.*\//, ''));
-        }
-      } catch(e) {}
-
-      if (listing && listing.length > 0) {
-        // Listing disponible — on prend tout dans l'ordre
-        for (const name of listing) {
-          photos.push(`${folder}/${name}`);
-        }
-      } else {
-        // Pas de listing — probe par pattern de nommage
-        // On récupère toutes les images connues via probe séquentiel
-        // On teste d'abord la première image connue, puis on explore les variantes
-
-        // Génère des candidats à partir du pattern YYYY-MM-DD_HH-MM-SS_UTC
-        // En testant toutes les combinaisons raisonnables de dates dans le dossier
-        // Ici on probe en partant de la 1ère image connue et on élargit
-
-        // Fallback : on probe directement les URLs une par une
-        // en générant des noms plausibles depuis la liste files de l'event config
-        const event = Object.values(EVENTS).find(e => e.folder === folder.replace('../', '../'));
-        // On récupère l'event courant depuis l'URL
-        const id = new URLSearchParams(window.location.search).get('id');
-        const ev = EVENTS[id];
-        if (!ev) return photos;
-
-        // Pour chaque fichier de base connu, probe les variantes
-        // D'abord on probe le fichier seul, puis _1 à _10
-        // Puis on cherche d'autres dates en incrémentant
-        const probed = new Set();
-
-        // On probe les fichiers connus + leurs variantes
-        for (const base of ev.files) {
-          // Sans suffixe numérique
-          const plain = `${folder}/${base}.jpg`;
-          if (!probed.has(plain) && await probeImage(plain)) {
-            photos.push(plain);
-            probed.add(plain);
-          }
-          // Avec suffixes _1 à _12
-          for (let i = 1; i <= 12; i++) {
-            const variant = `${folder}/${base}_${i}.jpg`;
-            if (!probed.has(variant) && await probeImage(variant)) {
-              photos.push(variant);
-              probed.add(variant);
-            }
-          }
-        }
-
-        // Probe des autres fichiers du dossier en cherchant des dates proches
-        // On parse la date du premier fichier connu et on cherche d'autres jours
-        if (ev.files.length > 0) {
-          const firstBase = ev.files[0]; // ex: "2024-02-27_11-31-16_UTC"
-          const datePart  = firstBase.substring(0, 10); // "2024-02-27"
-          const [year, month] = datePart.split('-');
-
-          // On probe d'autres heures/jours du même mois via fetch listing alternatif
-          // Comme on n'a pas de listing, on va chercher d'autres fichiers connus
-          // en testant les dates des 30 jours autour
-          for (let day = 1; day <= 31; day++) {
-            const dd = String(day).padStart(2, '0');
-            const dateStr = `${year}-${month}-${dd}`;
-            if (dateStr === datePart) continue; // déjà fait
-
-            // On probe quelques heures plausibles
-            for (let h = 8; h <= 20; h++) {
-              const hh = String(h).padStart(2, '0');
-              // On tente le pattern générique
-              for (let m = 0; m <= 59; m += 1) {
-                const mm = String(m).padStart(2, '0');
-                // Trop de combinaisons — on skip cette approche
-                // À la place on fait confiance au listing fetch
-              }
-            }
-          }
-        }
-      }
-
-      return photos;
-    }
-
-    // ── Approche simplifiée et fiable : fetch listing directory ──────────
+    // ── Charge les photos depuis manifest.json ────────────────────────────
     async function loadAllPhotos(folder) {
-      const photos = [];
-
-      // Tente de récupérer le listing du dossier
       try {
-        const res = await fetch(folder + '/');
-        if (res.ok) {
-          const html = await res.text();
-          const matches = [...html.matchAll(/href="([^"']+\.jpg)"/gi)];
-          for (const m of matches) {
-            const name = m[1].replace(/.*\//, '').replace(/\?.*/, '');
-            if (name && !name.startsWith('?')) {
-              photos.push(`${folder}/${name}`);
-            }
-          }
-          if (photos.length > 0) return photos.sort();
-        }
-      } catch(e) {}
-
-      // Fallback : probe par noms connus + variantes
-      const id = new URLSearchParams(window.location.search).get('id');
-      const ev = EVENTS[id];
-      if (!ev) return [];
-
-      for (const base of ev.files) {
-        const plain = `${folder}/${base}.jpg`;
-        if (await probeImage(plain)) photos.push(plain);
-        for (let i = 1; i <= 20; i++) {
-          const variant = `${folder}/${base}_${i}.jpg`;
-          if (await probeImage(variant)) photos.push(variant);
-          else break; // dès qu'une variante manque, on arrête la séquence
-        }
+        const res = await fetch(`${folder}/manifest.json`);
+        if (!res.ok) throw new Error('Manifest introuvable');
+        const manifest = await res.json();
+        return manifest.photos.map(f => `${folder}/${f}`);
+      } catch(e) {
+        console.error('Erreur manifest :', e);
+        return [];
       }
-
-      // Probe des autres dates du même mois
-      const id2 = new URLSearchParams(window.location.search).get('id');
-      const ev2 = EVENTS[id2];
-      if (ev2 && ev2.files.length > 0) {
-        const firstBase = ev2.files[0];
-        const [year, month] = firstBase.substring(0, 10).split('-');
-        // On récupère les fichiers déjà connus depuis le dir listing si dispo
-        // Sinon on s'en tient aux files déclarés
-      }
-
-      return photos;
     }
 
     // ── Init page ─────────────────────────────────────────────────────────
-    const params  = new URLSearchParams(window.location.search);
-    const id      = params.get('id');
-    const event   = EVENTS[id];
+    const params = new URLSearchParams(window.location.search);
+    const id     = params.get('id');
+    const event  = EVENTS[id];
 
     if (!event) {
       document.getElementById('event-title').textContent = 'Événement introuvable';
     } else {
-      // Rempli le header
       document.getElementById('event-title').textContent    = event.title;
       document.getElementById('event-location').textContent = '📍 ' + event.location;
       document.getElementById('event-date').textContent     = event.date;
       document.title = event.title + ' — Racing Club';
 
-      // Charge et affiche les photos
       loadAllPhotos(event.folder).then(photos => {
         const grid    = document.getElementById('gallery-grid');
         const loading = document.getElementById('loading');
@@ -307,7 +153,7 @@
         loading.remove();
 
         if (photos.length === 0) {
-          grid.innerHTML = '<p style="color:var(--color-mid);text-align:center;grid-column:1/-1;">Aucune photo disponible.</p>';
+          grid.innerHTML = '<p style="color:var(--color-mid);text-align:center;">Aucune photo disponible.</p>';
           return;
         }
 
@@ -316,7 +162,6 @@
         photos.forEach((src, i) => {
           const item = document.createElement('div');
           item.className = 'detail-gallery__item reveal';
-          item.style.animationDelay = (i * 0.05) + 's';
           item.innerHTML = `
             <img src="${src}" alt="Photo ${i + 1}" loading="lazy" />
             <div class="detail-gallery__item__overlay">
@@ -329,13 +174,16 @@
           grid.appendChild(item);
         });
 
-        // Déclenche les animations reveal
-        if (typeof IntersectionObserver !== 'undefined') {
-          const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-          }, { threshold: 0.1 });
-          document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-        }
+        // Animations reveal
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.detail-gallery__item').forEach(el => obs.observe(el));
       });
     }
 
