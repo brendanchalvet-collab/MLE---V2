@@ -160,7 +160,9 @@
 
         photos.forEach((src, i) => {
           const item = document.createElement('div');
-          item.className = 'detail-gallery__item reveal';
+          item.className = 'detail-gallery__item';
+          item.style.opacity = '0';
+          item.style.transition = 'opacity 0.4s ease';
           item.innerHTML = `
             <img src="${src}" alt="Photo ${i + 1}" loading="lazy" />
             <div class="detail-gallery__item__overlay">
@@ -169,6 +171,12 @@
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
               </svg>
             </div>`;
+        
+          // Apparaît dès que l'image est chargée
+          item.querySelector('img').addEventListener('load', () => {
+            item.style.opacity = '1';
+          });
+        
           item.addEventListener('click', () => openLightbox(i, photos));
           grid.appendChild(item);
         });
