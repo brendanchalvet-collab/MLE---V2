@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie — Racing Club</title>
+  <meta name="description" content="Galerie photos de l'événement." />
+  <link rel="icon" href="assets/logo/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo/logo.jpg" alt="Racing Club Logo" />
+    </a>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
+    </ul>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="detail-hero" id="detail-hero">
+    <div class="detail-hero__overlay"></div>
+    <div class="detail-hero__content container">
+      <a href="evenements.html" class="detail-hero__back">← Retour aux événements</a>
+      <h1 class="detail-hero__title" id="event-title">Chargement…</h1>
+      <p class="detail-hero__location" id="event-location"></p>
+      <p class="detail-hero__date" id="event-date"></p>
+    </div>
+  </header>
+
+  <!-- GALERIE -->
+  <section class="detail-gallery">
+    <div class="container">
+      <div class="detail-gallery__count" id="photo-count"></div>
+      <div class="detail-gallery__grid" id="gallery-grid">
+        <div class="detail-gallery__loading" id="loading">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightbox-close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev">‹</button>
+    <img src="" alt="" id="lightbox-img" />
+    <div class="lightbox__counter" id="lightbox-counter"></div>
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next">›</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Nos partenaires</h4>
+        <ul>
+          <li>Kelo'Estate</li>
+          <li>Mairie de St-Raphaël</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Racing Club — Tous droits réservés</span>
+      <span>Fait avec passion 🏎️</span>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // ── Configuration des événements ──────────────────────────────────────
+    const EVENTS = {
+      "1": {
+        title:    "Rassemblement St-Raphaël 2025",
+        location: "Saint-Raphaël, Var",
+        date:     "Mars 2025",
+        folder:   "assets/images/events/2025-03-st-raph",
+      },
+      "2": {
+        title:    "Rassemblement St-Raphaël Mai 2024",
+        location: "Saint-Raphaël, Var",
+        date:     "Mai 2024",
+        folder:   "assets/images/events/2024-05-st-raph",
+      },
+      "3": {
+        title:    "Rassemblement St-Raphaël Février 2024",
+        location: "Saint-Raphaël, Var",
+        date:     "Février 2024",
+        folder:   "assets/images/events/2024-02-st-raph",
+      }
+    };
+
+    // ── Charge les photos depuis manifest.json ────────────────────────────
+    async function loadAllPhotos(folder) {
+      try {
+        const res = await fetch(`${folder}/manifest.json`);
+        if (!res.ok) throw new Error('Manifest introuvable');
+        const manifest = await res.json();
+        return manifest.photos.map(f => `${folder}/${f}`);
+      } catch(e) {
+        console.error('Erreur manifest :', e);
+        return [];
+      }
+    }
+
+    // ── Init page ─────────────────────────────────────────────────────────
+    const params = new URLSearchParams(window.location.search);
+    const id     = params.get('id');
+    const event  = EVENTS[id];
+
+    if (!event) {
+      document.getElementById('event-title').textContent = 'Événement introuvable';
+    } else {
+      document.getElementById('event-title').textContent    = event.title;
+      document.getElementById('event-location').textContent = '📍 ' + event.location;
+      document.getElementById('event-date').textContent     = event.date;
+      document.title = event.title + ' — Racing Club';
+
+      loadAllPhotos(event.folder).then(photos => {
+        const grid    = document.getElementById('gallery-grid');
+        const loading = document.getElementById('loading');
+        const count   = document.getElementById('photo-count');
+
+        loading.remove();
+
+        if (photos.length === 0) {
+          grid.innerHTML = '<p style="color:var(--color-mid);text-align:center;">Aucune photo disponible.</p>';
+          return;
+        }
+
+        count.textContent = photos.length + ' photo' + (photos.length > 1 ? 's' : '');
+
+        photos.forEach((src, i) => {
+          const item = document.createElement('div');
+          item.className = 'detail-gallery__item reveal';
+          item.innerHTML = `
+            <img src="${src}" alt="Photo ${i + 1}" loading="lazy" />
+            <div class="detail-gallery__item__overlay">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+              </svg>
+            </div>`;
+          item.addEventListener('click', () => openLightbox(i, photos));
+          grid.appendChild(item);
+        });
+
+        // Animations reveal
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.detail-gallery__item').forEach(el => obs.observe(el));
+      });
+    }
+
+    // ── Lightbox ──────────────────────────────────────────────────────────
+    let currentPhotos = [];
+    let currentIndex  = 0;
+
+    function openLightbox(index, photos) {
+      currentPhotos = photos;
+      currentIndex  = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      document.getElementById('lightbox-img').src = currentPhotos[currentIndex];
+      document.getElementById('lightbox-counter').textContent =
+        (currentIndex + 1) + ' / ' + currentPhotos.length;
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    document.getElementById('lightbox-prev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+      updateLightbox();
+    });
+
+    document.getElementById('lightbox-next').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % currentPhotos.length;
+      updateLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentPhotos.length; updateLightbox(); }
+      if (e.key === 'Escape')     { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+    });
+
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === document.getElementById('lightbox')) {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
