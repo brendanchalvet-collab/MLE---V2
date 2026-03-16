@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Racing Club</title>
+  <title>Contact — Motor Lux Event</title>
   <meta name="description" content="Contactez le Racing Club pour toute question sur nos événements automobiles." />
   <link rel="icon" href="assets/logo/favicon.ico" />
   <link rel="stylesheet" href="css/style.css" />
@@ -26,13 +26,13 @@
     </button>
   </nav>
 
-<!-- PAGE HERO -->
-<header style="
-  padding: 10rem 2rem 4rem;
-  background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--color-dark)),
-              url('assets/images/events/2024-05-st-raph/2024-05-26_17-06-43_UTC.jpg') center/cover no-repeat;
-  text-align: center;
-">
+  <!-- PAGE HERO -->
+  <header style="
+    padding: 10rem 2rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--color-dark)),
+                url('assets/images/events/2024-05-st-raph/2024-05-26_17-06-43_UTC.jpg') center/cover no-repeat;
+    text-align: center;
+  ">
     <span style="font-family:var(--font-condensed);font-size:var(--fs-sm);letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:0.75rem;">
       Nous écrire
     </span>
@@ -109,13 +109,11 @@
 
         <!-- RÉSEAUX SOCIAUX -->
         <div class="contact__social">
-          <!-- Facebook -->
           <a href="#" aria-label="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
             </svg>
           </a>
-          <!-- Instagram -->
           <a href="#" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
@@ -123,7 +121,6 @@
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/>
             </svg>
           </a>
-          <!-- YouTube -->
           <a href="#" aria-label="YouTube">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
@@ -135,7 +132,7 @@
 
       <!-- FORMULAIRE CONTACT -->
       <div>
-        <form class="inscription__form" id="contact-form" action="mailto:contact@racingclub.fr" method="post" enctype="text/plain">
+        <form class="inscription__form" id="contact-form">
           <div class="form-row">
             <div class="form-group">
               <label for="c-prenom">Prénom *</label>
@@ -203,25 +200,61 @@
       <div class="footer__col">
         <h4>Nos partenaires</h4>
         <ul>
-          <!-- <li><a href="contact.html">KELO'ESTATE</a></li> -->
-          <li>Kelo'Estate</a></li>
-          <li>Mairie de St-Raphaël</a></li>
+          <li><a href="https://www.instagram.com/keloestate/">Kelo'Estate</a></li>
+          <li><a href="https://www.instagram.com/villesaintraphael/Mairie de St-Raphaël">Mairie de St-Raphaël</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
         <ul>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Racing Club — Tous droits réservés</span>
+      <span>© 2026 Motor Lux Event— Tous droits réservés</span>
       <span>Fait avec passion 🏎️</span>
     </div>
   </footer>
 
   <script src="js/navbar.js"></script>
-  <script src="js/form.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybglzhFNY1U3wyHSwfYf3s8X50bWdPoSfK85rwN9sWP_Rqu9kHmHuozMZPRKG5xpkG/exec';
+
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Envoi en cours…';
+      btn.disabled = true;
+
+      const data = {
+        type:      'contact',
+        prenom:    document.getElementById('c-prenom').value,
+        nom:       document.getElementById('c-nom').value,
+        email:     document.getElementById('c-email').value,
+        telephone: document.getElementById('c-tel').value,
+        sujet:     document.getElementById('c-sujet').value,
+        message:   document.getElementById('c-message').value,
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        btn.textContent = '✓ Message envoyé !';
+        btn.style.background = '#2a6e3f';
+        e.target.reset();
+      } catch(err) {
+        btn.textContent = 'Erreur — réessayez';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
 </body>
 </html>
