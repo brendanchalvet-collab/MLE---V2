@@ -84,7 +84,10 @@
 }
 
 @media (max-width: 500px) {
-  .detail-gallery__grid { columns: 1; }
+  .detail-gallery__grid {
+    columns: 2;
+    column-gap: 0.5rem;
+  }
 }
 
 .detail-gallery__item {
@@ -94,6 +97,18 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform var(--transition-slow);
+}
+
+@media (max-width: 500px) {
+  .detail-gallery__item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.detail-gallery__item.visible {
+  opacity: 1;
 }
 
 .detail-gallery__item img {
@@ -125,6 +140,17 @@
   width: 2rem;
   height: 2rem;
   color: var(--color-white);
+}
+
+/* Sur mobile, overlay toujours légèrement visible */
+@media (max-width: 768px) {
+  .detail-gallery__item__overlay {
+    opacity: 0.3;
+  }
+  .detail-gallery__item__overlay svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 /* Loading spinner */
@@ -159,13 +185,14 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.95);
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
+  touch-action: pan-y;
 }
 
 .lightbox.active {
@@ -179,6 +206,13 @@
   object-fit: contain;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-md);
+  user-select: none;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lightbox img.swiping {
+  transition: none;
 }
 
 .lightbox__close {
@@ -193,6 +227,7 @@
   opacity: 0.7;
   transition: opacity var(--transition);
   z-index: 10;
+  padding: 0.5rem;
 }
 
 .lightbox__close:hover { opacity: 1; }
@@ -219,6 +254,11 @@
 .lightbox__nav:hover { background: rgba(200,168,75,0.2); }
 .lightbox__nav--prev { left: 1.5rem; }
 .lightbox__nav--next { right: 1.5rem; }
+
+/* Cacher les flèches sur mobile — on swipe */
+@media (max-width: 768px) {
+  .lightbox__nav { display: none; }
+}
 
 .lightbox__counter {
   position: absolute;

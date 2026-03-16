@@ -51,32 +51,63 @@
   font-weight: 700 !important;
 }
 
+/* Burger */
 .navbar__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   width: 28px;
+  height: 28px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .navbar__burger span {
   display: block;
   height: 2px;
   background: var(--color-white);
-  transition: var(--transition);
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Burger → Croix */
+.navbar__burger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__burger.active span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.navbar__burger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .navbar__links {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 100%; left: 0; right: 0;
-    flex-direction: column;
     background: var(--color-dark);
+    padding: 0 2rem;
+    gap: 0;
+    border-top: 1px solid var(--color-grey);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+
+  .navbar__links.open {
+    max-height: 400px;
+    opacity: 1;
     padding: 2rem;
     gap: 1.5rem;
-    border-top: 1px solid var(--color-grey);
   }
-  .navbar__links.open { display: flex; }
+
   .navbar__burger { display: flex; }
 }
