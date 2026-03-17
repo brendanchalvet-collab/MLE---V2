@@ -31,7 +31,7 @@
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 1.5rem;
-  transition: gap var(--transition);
+  transition: opacity var(--transition);
   opacity: 0.8;
 }
 
@@ -102,14 +102,10 @@
 }
 
 @media (max-width: 500px) {
-  .detail-gallery__item {
-    margin-bottom: 0.5rem;
-  }
+  .detail-gallery__item { margin-bottom: 0.5rem; }
 }
 
-.detail-gallery__item.visible {
-  opacity: 1;
-}
+.detail-gallery__item.visible { opacity: 1; }
 
 .detail-gallery__item img {
   width: 100%;
@@ -132,9 +128,7 @@
   transition: opacity var(--transition);
 }
 
-.detail-gallery__item:hover .detail-gallery__item__overlay {
-  opacity: 1;
-}
+.detail-gallery__item:hover .detail-gallery__item__overlay { opacity: 1; }
 
 .detail-gallery__item__overlay svg {
   width: 2rem;
@@ -142,11 +136,8 @@
   color: var(--color-white);
 }
 
-/* Sur mobile, overlay toujours légèrement visible */
 @media (max-width: 768px) {
-  .detail-gallery__item__overlay {
-    opacity: 0.3;
-  }
+  .detail-gallery__item__overlay { opacity: 0.3; }
   .detail-gallery__item__overlay svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -155,7 +146,6 @@
 
 /* Loading spinner */
 .detail-gallery__loading {
-  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,9 +201,7 @@
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.lightbox img.swiping {
-  transition: none;
-}
+.lightbox img.swiping { transition: none; }
 
 .lightbox__close {
   position: absolute;
@@ -255,7 +243,6 @@
 .lightbox__nav--prev { left: 1.5rem; }
 .lightbox__nav--next { right: 1.5rem; }
 
-/* Cacher les flèches sur mobile — on swipe */
 @media (max-width: 768px) {
   .lightbox__nav { display: none; }
 }
