@@ -2,6 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google Analytics — chargé uniquement après consentement -->
+  <script>
+  function loadAnalytics() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-226K03S6MV';
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-226K03S6MV');
+  }
+  if (localStorage.getItem('cookies') === 'accepted') {
+    loadAnalytics();
+  }
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Motor Lux Event — Rassemblement Automobile</title>
   <meta name="description" content="Rassemblement de voitures de courses et de collection. Rejoignez notre communauté de passionnés." />
@@ -28,23 +47,10 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero" id="hero">
-
-    <!-- Vidéo de fond — muette, en boucle, pas d'interface -->
-    <video
-      class="hero__video-bg"
-      src="assets/videos/2025-04-02_10-03-08_UTC.mp4"
-      autoplay
-      loop
-      muted
-      playsinline
-      disablePictureInPicture
-      disableRemotePlayback
-      preload="auto"
-    ></video>
-
-    <div class="hero__bg"></div>
-    <div class="hero__overlay"></div>
+  <header class="hero" id="hero" style="
+    background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.85)),
+                url('assets/images/events/2025-03-st-raph/2025-04-07_08-00-00_UTC_11.jpg') center/cover no-repeat;
+  ">
     <div class="hero__content container">
       <span class="hero__tag">Passion — Élégance — Vitesse</span>
       <h1 class="hero__title">
@@ -82,108 +88,108 @@
     </div>
   </section>
 
-<!-- COUNTDOWN - Prochain événement -->
-<div class="countdown">
-  <p class="countdown__event-name">St-Raphaël - 12 Avril 2026</p>
-  <p class="countdown__label">Prochain rassemblement dans</p>
-  <div class="countdown__timer" id="countdown-timer"
-       data-date="2026-04-12T09:00:00">
-    <div class="countdown__unit">
-      <span class="countdown__number" id="cd-days">00</span>
-      <span class="countdown__label-unit">Jours</span>
+  <!-- COUNTDOWN -->
+  <div class="countdown">
+    <p class="countdown__event-name">St-Raphaël - 12 Avril 2026</p>
+    <p class="countdown__label">Prochain rassemblement dans</p>
+    <div class="countdown__timer" id="countdown-timer" data-date="2026-04-12T10:00:00">
+      <div class="countdown__unit">
+        <span class="countdown__number" id="cd-days">00</span>
+        <span class="countdown__label-unit">Jours</span>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="countdown__unit">
+        <span class="countdown__number" id="cd-hours">00</span>
+        <span class="countdown__label-unit">Heures</span>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="countdown__unit">
+        <span class="countdown__number" id="cd-minutes">00</span>
+        <span class="countdown__label-unit">Minutes</span>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="countdown__unit">
+        <span class="countdown__number" id="cd-seconds">00</span>
+        <span class="countdown__label-unit">Secondes</span>
+      </div>
     </div>
-    <span class="countdown__sep">:</span>
-    <div class="countdown__unit">
-      <span class="countdown__number" id="cd-hours">00</span>
-      <span class="countdown__label-unit">Heures</span>
+    <a href="inscription.html" class="btn btn--ghost" style="margin-top:2rem;">S'inscrire à l'événement</a>
+  </div>
+
+  <!-- LISTE DES ÉVÉNEMENTS -->
+  <section style="background:var(--color-dark);padding:var(--space-lg) var(--space-md);">
+    <div class="container">
+      <div class="events-grid">
+
+        <article class="event-card reveal reveal--d1">
+          <div class="event-card__thumb">
+            <img src="assets/images/events/2025-03-st-raph/2025-04-01_22-17-53_UTC.jpg" alt="Rassemblement St-Raphaël Mars 2025" loading="lazy" />
+          </div>
+          <div class="event-card__body">
+            <p class="event-card__date">Mars 2025</p>
+            <h3 class="event-card__title">Rassemblement St-Raphaël 2025</h3>
+            <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+            <a href="event-detail.html?id=1" class="event-card__link">Voir la galerie →</a>
+          </div>
+        </article>
+
+        <article class="event-card reveal reveal--d2">
+          <div class="event-card__thumb">
+            <img src="assets/images/events/2024-05-st-raph/2024-05-21_12-43-47_UTC.jpg" alt="Rassemblement St-Raphaël Mai 2024" loading="lazy" />
+          </div>
+          <div class="event-card__body">
+            <p class="event-card__date">Mai 2024</p>
+            <h3 class="event-card__title">Rassemblement St-Raphaël Mai 2024</h3>
+            <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+            <a href="event-detail.html?id=2" class="event-card__link">Voir la galerie →</a>
+          </div>
+        </article>
+
+        <article class="event-card reveal reveal--d3">
+          <div class="event-card__thumb">
+            <img src="assets/images/events/2024-02-st-raph/2024-02-27_11-31-16_UTC.jpg" alt="Rassemblement St-Raphaël Février 2024" loading="lazy" />
+          </div>
+          <div class="event-card__body">
+            <p class="event-card__date">Février 2024</p>
+            <h3 class="event-card__title">Rassemblement St-Raphaël Février 2024</h3>
+            <p class="event-card__location">📍 Saint-Raphaël, Var</p>
+            <a href="event-detail.html?id=3" class="event-card__link">Voir la galerie →</a>
+          </div>
+        </article>
+
+      </div>
     </div>
-    <span class="countdown__sep">:</span>
-    <div class="countdown__unit">
-      <span class="countdown__number" id="cd-minutes">00</span>
-      <span class="countdown__label-unit">Minutes</span>
-    </div>
-    <span class="countdown__sep">:</span>
-    <div class="countdown__unit">
-      <span class="countdown__number" id="cd-seconds">00</span>
-      <span class="countdown__label-unit">Secondes</span>
+  </section>
+
+  <!-- BANNER CTA -->
+  <div class="banner" style="background: url('assets/images/events/2025-03-st-raph/2025-04-18_16-33-53_UTC_2.jpg') center/cover no-repeat;">
+    <div class="banner__content">
+      <h2>Vous avez une belle voiture ?<br><span style="color:var(--color-accent)">Exposez-la !</span></h2>
+      <p>Inscrivez votre véhicule à notre prochain rassemblement et partagez votre passion avec des centaines de passionnés.</p>
+      <a href="inscription.html" class="btn btn--primary btn--lg">S'inscrire maintenant</a>
     </div>
   </div>
-  <a href="inscription.html" class="btn btn--ghost" style="margin-top:2rem;">S'inscrire à l'événement</a>
-</div>
-
-<!-- LISTE DES ÉVÉNEMENTS -->
-<section style="background:var(--color-dark);padding:var(--space-lg) var(--space-md);">
-  <div class="container">
-
-    <div class="events-grid">
-
-      <article class="event-card reveal reveal--d1">
-        <div class="event-card__thumb">
-          <img
-            src="assets/images/events/2025-03-st-raph/2025-04-01_22-17-53_UTC.jpg"
-            alt="Rassemblement St-Raphaël Mars 2025"
-            loading="lazy"
-          />
-        </div>
-        <div class="event-card__body">
-          <p class="event-card__date">Mars 2025</p>
-          <h3 class="event-card__title">Rassemblement St-Raphaël 2025</h3>
-          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
-          <a href="event-detail.html?id=1" class="event-card__link">Voir la galerie →</a>
-        </div>
-      </article>
-
-      <article class="event-card reveal reveal--d2">
-        <div class="event-card__thumb">
-          <img
-            src="assets/images/events/2024-05-st-raph/2024-05-21_12-43-47_UTC.jpg"
-            alt="Rassemblement St-Raphaël Mai 2024"
-            loading="lazy"
-          />
-        </div>
-        <div class="event-card__body">
-          <p class="event-card__date">Mai 2024</p>
-          <h3 class="event-card__title">Rassemblement St-Raphaël Mai 2024</h3>
-          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
-          <a href="event-detail.html?id=2" class="event-card__link">Voir la galerie →</a>
-        </div>
-      </article>
-
-      <article class="event-card reveal reveal--d3">
-        <div class="event-card__thumb">
-          <img
-            src="assets/images/events/2024-02-st-raph/2024-02-27_11-31-16_UTC.jpg"
-            alt="Rassemblement St-Raphaël Février 2024"
-            loading="lazy"
-          />
-        </div>
-        <div class="event-card__body">
-          <p class="event-card__date">Février 2024</p>
-          <h3 class="event-card__title">Rassemblement St-Raphaël Février 2024</h3>
-          <p class="event-card__location">📍 Saint-Raphaël, Var</p>
-          <a href="event-detail.html?id=3" class="event-card__link">Voir la galerie →</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- BANNER CTA -->
-<div class="banner" style="background: url('assets/images/events/2025-03-st-raph/2025-04-18_16-33-53_UTC_2.jpg') center/cover no-repeat;">
-  <div class="banner__content">
-    <h2>Vous avez une belle voiture ?<br><span style="color:var(--color-accent)">Exposez-la !</span></h2>
-    <p>Inscrivez votre véhicule à notre prochain rassemblement et partagez votre passion avec des centaines de passionnés.</p>
-    <a href="inscription.html" class="btn btn--primary btn--lg">S'inscrire maintenant</a>
-  </div>
-</div>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <img src="assets/logo/logo.jpg" alt="Motor Lux Event" />
         <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/people/motorluxevent/61556009424069/#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/motor.lux.event/" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="footer__col">
         <h4>Navigation</h4>
@@ -197,7 +203,7 @@
         <h4>Nos partenaires</h4>
         <ul>
           <li><a href="https://www.instagram.com/keloestate/">Kelo'Estate</a></li>
-          <li><a href="https://www.instagram.com/villesaintraphael/Mairie de St-Raphaël">Mairie de St-Raphaël</a></li>
+          <li><a href="https://www.instagram.com/villesaintraphael/">Mairie de St-Raphaël</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -209,14 +215,44 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Motor Lux Event— Tous droits réservés</span>
+      <span>© 2026 Motor Lux Event — Tous droits réservés</span>
       <span>Fait avec passion 🏎️</span>
     </div>
   </footer>
 
-  <script src="js/navbar.js"></script>
-  <script src="js/calendar.js"></script>
-  <script src="js/animations.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/animations.js"></script>
+
+<!-- BANDEAU COOKIES -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <strong>Ce site utilise des cookies</strong>
+      <p>Nous utilisons Google Analytics pour mesurer l'audience du site. Vos données restent anonymisées.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="btn btn--primary btn--sm" id="cookie-accept">Accepter</button>
+      <button class="btn btn--ghost btn--sm" id="cookie-refuse">Refuser</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT COOKIES -->
+<script>
+  const banner = document.getElementById('cookie-banner');
+  if (!localStorage.getItem('cookies')) {
+    banner.classList.add('active');
+  }
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('cookies', 'accepted');
+    banner.classList.remove('active');
+    loadAnalytics();
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', () => {
+    localStorage.setItem('cookies', 'refused');
+    banner.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
