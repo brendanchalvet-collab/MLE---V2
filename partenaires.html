@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Google Analytics — chargé uniquement après consentement -->
+  <script>
+  function loadAnalytics() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-226K03S6MV';
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-226K03S6MV');
+  }
+  if (localStorage.getItem('cookies') === 'accepted') {
+    loadAnalytics();
+  }
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partenaires — Motor Lux Event</title>
+  <meta name="description" content="Découvrez les partenaires qui soutiennent Motor Lux Event, le rassemblement automobile de prestige sur la Côte d'Azur." />
+  <link rel="icon" href="assets/logo/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/logo/logo.jpg" alt="Motor Lux Event Logo" />
+    </a>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="partenaires.html" class="active">Partenaires</a></li>
+      <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
+    </ul>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header style="
+    padding: 10rem 2rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--color-dark)),
+                url('assets/images/events/2025-03-st-raph/2025-04-18_16-33-53_UTC_3.jpg') center/cover no-repeat;
+    text-align: center;
+  ">
+    <span class="partners-hero__label">Rejoignez-nous</span>
+    <h1>Ils nous <span style="color:var(--color-accent)">soutiennent</span></h1>
+    <p class="partners-hero__sub">
+      Motor Lux Event existe grâce à la confiance de partenaires partageant notre passion pour l'excellence automobile.
+    </p>
+  </header>
+
+  <!-- INTRO -->
+  <section class="partners-intro">
+    <div class="container">
+      <p class="partners-intro__text">
+        Chaque rassemblement est rendu possible grâce à l'engagement de partenaires locaux et institutionnels. Leur soutien nous permet d'offrir des expériences uniques aux passionnés de voitures de course et de collection sur la Côte d'Azur.
+      </p>
+      <div class="partners-intro__divider"></div>
+    </div>
+  </section>
+
+  <!-- PARTENAIRES -->
+  <section class="partners-section">
+    <div class="container">
+
+      <!-- Partenaires Officiels -->
+      <div class="partners-category">
+        <span class="partners-category__label">Ils nous soutiennent</span>
+        <h2 class="partners-category__title">Partenaires <span style="color:var(--color-accent)">Officiels</span></h2>
+
+        <div class="partners-grid">
+
+          <article class="partner-card partner-card--featured reveal reveal--d1">
+            <div class="partner-card__logo">
+              <img src="assets/logo/keloestate.jpeg" alt="Logo Kelo'Estate" />
+            </div>
+            <div class="partner-card__body">
+              <p class="partner-card__tag">Immobilier de prestige</p>
+              <h3 class="partner-card__name">Kelo'Estate</h3>
+              <p class="partner-card__desc">
+                Agence immobilière spécialisée dans les biens de prestige sur la Côte d'Azur. Partenaire fondateur de Motor Lux Event, Kelo'Estate partage notre vision d'un art de vivre raffiné entre automobiles d'exception et lieux d'exception.
+              </p>
+              <a href="https://www.instagram.com/keloestate/" target="_blank" rel="noopener" class="partner-card__link">
+                Découvrir →
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Partenaires Institutionnels -->
+      <div class="partners-category">
+        <span class="partners-category__label">Soutien institutionnel</span>
+        <h2 class="partners-category__title">Partenaires <span style="color:var(--color-accent)">Institutionnels</span></h2>
+
+        <div class="partners-grid">
+
+          <article class="partner-card partner-card--featured reveal reveal--d1">
+            <div class="partner-card__logo">
+              <img src="assets/logo/saint-raphael.png" alt="Logo Mairie de Saint-Raphaël" />
+            </div>
+            <div class="partner-card__body">
+              <p class="partner-card__tag">Collectivité territoriale</p>
+              <h3 class="partner-card__name">Mairie de Saint-Raphaël</h3>
+              <p class="partner-card__desc">
+                La Ville de Saint-Raphaël accueille nos rassemblements et nous apporte son soutien logistique et institutionnel. Son engagement permet à Motor Lux Event de se tenir dans un cadre exceptionnel face à la Méditerranée.
+              </p>
+              <a href="https://www.ville-saintraphael.fr/" target="_blank" rel="noopener" class="partner-card__link">
+                Voir le profil →
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- CTA Devenir partenaire -->
+      <div class="partners-cta reveal reveal--d1">
+        <div class="partners-cta__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 4.79a14.98 14.98 0 00-5.84 7.38m12.29 2.56H6.16m9.43 0c-.56 1.96-1.75 3.62-3.59 4.62"/>
+          </svg>
+        </div>
+        <h3 class="partners-cta__title">Devenez partenaire</h3>
+        <p class="partners-cta__text">
+          Vous souhaitez associer votre marque à Motor Lux Event ? Contactez-nous pour découvrir nos offres de partenariat et les avantages exclusifs réservés à nos partenaires.
+        </p>
+        <a href="contact.html" class="btn btn--primary btn--lg">Nous contacter</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA ÉVÉNEMENTS -->
+  <section class="section-cta">
+    <div class="container">
+      <p class="section-cta__label">Envie de vivre l'expérience ?</p>
+      <h2 class="section-cta__title">Voir les prochains <span style="color:var(--color-accent)">événements</span></h2>
+      <a href="calendrier.html" class="btn btn--primary btn--lg">Consulter le calendrier</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/logo.jpg" alt="Motor Lux Event" />
+        <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/people/motorluxevent/61556009424069/#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/motor.lux.event/" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+          <li><a href="partenaires.html">Partenaires</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Partenaires</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/keloestate/">Kelo'Estate</a></li>
+          <li><a href="https://www.ville-saintraphael.fr/">Mairie de St-Raphaël</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Motor Lux Event — Tous droits réservés</span>
+      <span>Fait avec passion 🏎️</span>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+
+
+  <!-- BANDEAU COOKIES -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__text">
+        <strong>Ce site utilise des cookies</strong>
+        <p>Nous utilisons Google Analytics pour mesurer l'audience du site. Vos données restent anonymisées.</p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="btn btn--primary btn--sm" id="cookie-accept">Accepter</button>
+        <button class="btn btn--ghost btn--sm" id="cookie-refuse">Refuser</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT COOKIES -->
+  <script>
+    const banner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('cookies')) {
+      banner.classList.add('active');
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookies', 'accepted');
+      banner.classList.remove('active');
+      loadAnalytics();
+    });
+    document.getElementById('cookie-refuse').addEventListener('click', () => {
+      localStorage.setItem('cookies', 'refused');
+      banner.classList.remove('active');
+    });
+  </script>
+
+</body>
+</html>

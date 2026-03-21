@@ -2,6 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google Analytics — chargé uniquement après consentement -->
+  <script>
+  function loadAnalytics() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-226K03S6MV';
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-226K03S6MV');
+  }
+  if (localStorage.getItem('cookies') === 'accepted') {
+    loadAnalytics();
+  }
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mentions Légales & RGPD — Motor Lux Event</title>
   <meta name="description" content="Mentions légales et politique de confidentialité de Motor Lux Event." />
@@ -20,6 +39,7 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="evenements.html">Événements</a></li>
       <li><a href="calendrier.html">Calendrier</a></li>
+      <li><a href="partenaires.html">Partenaires</a></li>
       <li><a href="contact.html" class="navbar__cta btn btn--primary btn--sm">Contact</a></li>
     </ul>
     <button class="navbar__burger" id="burger" aria-label="Menu">
@@ -140,8 +160,22 @@
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="assets/logo/logo.jpg" alt="Racing Club" />
+        <img src="assets/logo/logo.jpg" alt="Motor Lux Event" />
         <p>Rassemblement de voitures de courses et de collection sur la Côte d'Azur.</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/people/motorluxevent/61556009424069/#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/motor.lux.event/" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="footer__col">
         <h4>Navigation</h4>
@@ -149,13 +183,14 @@
           <li><a href="index.html">Accueil</a></li>
           <li><a href="evenements.html">Événements</a></li>
           <li><a href="calendrier.html">Calendrier</a></li>
+          <li><a href="partenaires.html">Partenaires</a></li>
         </ul>
       </div>
       <div class="footer__col">
-        <h4>Nos partenaires</h4>
+        <h4>Partenaires</h4>
         <ul>
           <li><a href="https://www.instagram.com/keloestate/">Kelo'Estate</a></li>
-          <li><a href="https://www.instagram.com/villesaintraphael/Mairie de St-Raphaël">Mairie de St-Raphaël</a></li>
+          <li><a href="https://www.ville-saintraphael.fr/">Mairie de St-Raphaël</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -167,13 +202,44 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Motor Lux Event— Tous droits réservés</span>
+      <span>© 2026 Motor Lux Event — Tous droits réservés</span>
       <span>Fait avec passion 🏎️</span>
     </div>
   </footer>
 
   <script src="js/navbar.js"></script>
   <script src="js/animations.js"></script>
+
+  <!-- BANDEAU COOKIES -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <strong>Ce site utilise des cookies</strong>
+      <p>Nous utilisons Google Analytics pour mesurer l'audience du site. Vos données restent anonymisées.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="btn btn--primary btn--sm" id="cookie-accept">Accepter</button>
+      <button class="btn btn--ghost btn--sm" id="cookie-refuse">Refuser</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT COOKIES -->
+<script>
+  const banner = document.getElementById('cookie-banner');
+  if (!localStorage.getItem('cookies')) {
+    banner.classList.add('active');
+  }
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('cookies', 'accepted');
+    banner.classList.remove('active');
+    loadAnalytics();
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', () => {
+    localStorage.setItem('cookies', 'refused');
+    banner.classList.remove('active');
+  });
+</script>
 
 </body>
 </html>
