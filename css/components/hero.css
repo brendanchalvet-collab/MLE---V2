@@ -8,24 +8,23 @@
   overflow: hidden;
 }
 
-.hero__bg {
+.hero__video-bg {
   position: absolute;
   inset: 0;
-  background: url('../assets/images/hero/hero.jpg') center/cover no-repeat;
-  transform: scale(1.05);
-  transition: transform 8s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
-
-.hero.loaded .hero__bg { transform: scale(1); }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
-    to top,
-    rgba(10,10,10,0.95) 0%,
-    rgba(10,10,10,0.4) 50%,
-    rgba(10,10,10,0.1) 100%
+    to bottom,
+    rgba(10,10,10,0.4) 0%,
+    rgba(10,10,10,0.95) 100%
   );
 }
 
@@ -66,11 +65,11 @@
   flex-wrap: wrap;
 }
 
-/* Scroll indicator */
 .hero__scroll {
   position: absolute;
   bottom: 2rem;
   right: 2rem;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
